@@ -44,7 +44,7 @@ df <- read.csv(
 ```
 
 ### Podstawowe informacje o zbiorze danych
-```{r dataFrameSummary, cache=TRUE}
+```{r dataFrameSummary}
 dim(df)
 names(df)
 ```
@@ -153,7 +153,7 @@ Na niektórych wykresach występuje stosunkowo sporo wartości odstających. Wid
 
 ### Korelacja atrybutów numerycznych
 Wykresy korelacji atrybutów pokazuje kilka silnych zależności. Warto wyróżnić tutaj pary: chel1-lcop1, chel2-lcop2 oraz cumf-totaln. Pierwsze dwie pary to różne gatunki planktonu, występowanie jednego gatunku potencjalnie wpływa na rzadsze występowanie drugiego (korelacja bliska -1). Z kolei para cumf-totaln to natężenie połowów i łączna liczba złowionych ryb, ich pozytywna korelacja nie powinna zaskakiwać.
-```{r correlation, cache=FALSE}
+```{r correlation}
 corrplot(
   cor(df_grouped),
   method="circle",
@@ -182,7 +182,7 @@ ggplot(
 ## Szukanie modelu
 ### Podział zbioru na treningowy i uczący
 Przed trenowanie modelu należy podzielić zbiór danych na zbiór treningowy i uczący. W naszym przypadku podzieliliśmy je w stosunku 1 do 3.
-```{r, eval=TRUE}
+```{r}
 inTraining <- createDataPartition(
   y = df_grouped$length,
   p = .75,
@@ -198,10 +198,9 @@ dim(train_set)
 dim(test_set)
 ```
 
-### Regresja
-## Trenowanie modelu
+### Trenowanie modelu
 Do znalezienia regresora długości śledzi posługujemy się algorytmem regresji liniowej. Podczas uczenia używamy techniki walidacji krzyżowej z podziałem zbioru treningowego na 10 części.
-```{r, eval=TRUE}
+```{r}
 fitControl <- trainControl(
   method = "repeatedcv",
   number = 10,
@@ -218,7 +217,7 @@ model_cv <- train(
 model_cv
 ```
 
-## Ocena modelu
+### Ocena modelu
 Za baseline uznaliśmy regresor, który zawsze zwraca średnią długość śledzia policzoną na wszystkich obserwacjach ze zbioru uczącego. Nauczony regresor jest znacząco lepszy niż baseline, co widać po wartościach RMSE. Niestesty nie udało nam się zrozumieć dlaczego Rsquared ma wartość NA w przypadku baseline'u.
 ```{r}
 test_pred <- predict(model_cv, test_set)
