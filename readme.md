@@ -23,9 +23,8 @@
 -   [Szukanie modelu](#szukanie-modelu)
     -   [Podział zbioru na treningowy i
         uczący](#podział-zbioru-na-treningowy-i-uczący)
-    -   [Regresja](#regresja)
--   [Trenowanie modelu](#trenowanie-modelu)
--   [Ocena modelu](#ocena-modelu)
+    -   [Trenowanie modelu](#trenowanie-modelu)
+    -   [Ocena modelu](#ocena-modelu)
     -   [Analiza ważności atrybutów w
         modelu](#analiza-ważności-atrybutów-w-modelu)
 
@@ -568,10 +567,7 @@ treningowy i uczący. W naszym przypadku podzieliliśmy je w stosunku 1 do
 
     ## [1] 638  14
 
-### Regresja
-
-Trenowanie modelu
------------------
+### Trenowanie modelu
 
 Do znalezienia regresora długości śledzi posługujemy się algorytmem
 regresji liniowej. Podczas uczenia używamy techniki walidacji krzyżowej
@@ -607,8 +603,7 @@ z podziałem zbioru treningowego na 10 części.
     ## 
     ## Tuning parameter 'intercept' was held constant at a value of TRUE
 
-Ocena modelu
-------------
+### Ocena modelu
 
 Za baseline uznaliśmy regresor, który zawsze zwraca średnią długość
 śledzia policzoną na wszystkich obserwacjach ze zbioru uczącego.
